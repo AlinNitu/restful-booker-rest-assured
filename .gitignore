@@ -1,0 +1,7 @@
+target/
+.idea/
+src/main/resources/config.properties
+src/main/resources/web.properties
+all.log
+*.iml
+.DS_Store
