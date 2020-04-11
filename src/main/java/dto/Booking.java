@@ -2,7 +2,7 @@ package dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RequestBody {
+public class Booking {
 
     /*
     {
@@ -24,6 +24,7 @@ public class RequestBody {
     public boolean depositPaid;
     public BookingDates bookingDates;
     public String additionalNeeds;
+
 
     @JsonProperty("firstname")
     public void setFirstName(String firstName) {
