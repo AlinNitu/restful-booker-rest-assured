@@ -1,7 +1,7 @@
 package steps;
 
 import io.cucumber.java.Before;
-import utils.RestAssuredConfig;
+import utils.HttpConfig;
 
 public class Hooks {
 
@@ -9,7 +9,7 @@ public class Hooks {
     @Before
     public void setup() {
 
-        RestAssuredConfig restAssuredConfig = new RestAssuredConfig();
+        HttpConfig httpConfig = new HttpConfig();
     }
 
 }
