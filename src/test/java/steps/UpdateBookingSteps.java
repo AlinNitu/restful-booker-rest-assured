@@ -12,6 +12,10 @@ import utils.SharedState;
 
 import java.util.HashMap;
 
+import static utils.DateHandler.*;
+import static utils.RandomiserHelper.*;
+import static utils.RandomiserHelper.generateRandomDepositPaid;
+
 public class UpdateBookingSteps {
 
     private SharedState sharedState;
@@ -23,22 +27,10 @@ public class UpdateBookingSteps {
     @Given("Create update request payload")
     public void createUpdateRequestPayload() throws JsonProcessingException {
 
-        BookingDatesDto bookingDatesDto = BookingDatesDto.builder().build();
-        bookingDatesDto.setCheckin("01-01-2022");
-        bookingDatesDto.setCheckout("02-02-2024");
-
-        BookingDto bookingDto = BookingDto.builder().build();
-        bookingDto.setFirstName("alin");
-        bookingDto.setLastName("edit");
-        bookingDto.setTotalPrice(200);
-        bookingDto.setDepositPaid(false);
-        bookingDto.setBookingDatesDto(bookingDatesDto);
-        bookingDto.setAdditionalNeeds("rum and coke");
-
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        sharedState.jsonRequestBody = mapper.writeValueAsString(bookingDto);
+        sharedState.jsonRequestBody = mapper.writeValueAsString(createRandomUpdateData());
     }
 
     @When("Send PUT request")
@@ -49,5 +41,22 @@ public class UpdateBookingSteps {
 
         sharedState.response = HttpConfig.sendPutRequest("/booking/" + sharedState.bookingResponseBodyDto.bookingId,
                 sharedState.jsonRequestBody ,cookie);
+    }
+
+    private BookingDto createRandomUpdateData() {
+
+        BookingDatesDto bookingDatesDto = BookingDatesDto.builder().build();
+        bookingDatesDto.setCheckin(getNextSunday());
+        bookingDatesDto.setCheckout(getNextYear());
+
+        BookingDto bookingDto = BookingDto.builder().build();
+        bookingDto.setFirstName(generateRandomFirstName());
+        bookingDto.setLastName(generateRandomLastName());
+        bookingDto.setTotalPrice(generateRandomPrice());
+        bookingDto.setDepositPaid(generateRandomDepositPaid());
+        bookingDto.setBookingDatesDto(bookingDatesDto);
+        bookingDto.setAdditionalNeeds("It's always beer");
+
+        return bookingDto;
     }
 }

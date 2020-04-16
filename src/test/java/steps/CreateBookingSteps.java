@@ -61,18 +61,18 @@ public class CreateBookingSteps {
 
     private BookingDto createRandomBookingData() {
 
-       BookingDatesDto bookingDatesDto = BookingDatesDto.builder().build();
-       bookingDatesDto.setCheckin(getNextMonday());
-       bookingDatesDto.setCheckout(getNextSunday());
+        BookingDatesDto bookingDatesDto = BookingDatesDto.builder().build();
+        bookingDatesDto.setCheckin(getNextMonday());
+        bookingDatesDto.setCheckout(getNextSunday());
 
-       BookingDto bookingDto = BookingDto.builder().build();
-       bookingDto.setFirstName(generateRandomFirstName());
-       bookingDto.setLastName(generateRandomLastName());
-       bookingDto.setTotalPrice(generateRandomPrice());
-       bookingDto.setDepositPaid(generateRandomDepositPaid());
-       bookingDto.setBookingDatesDto(bookingDatesDto);
-       bookingDto.setAdditionalNeeds("It's always beer");
+        BookingDto bookingDto = BookingDto.builder().build();
+        bookingDto.setFirstName(generateRandomFirstName());
+        bookingDto.setLastName(generateRandomLastName());
+        bookingDto.setTotalPrice(generateRandomPrice());
+        bookingDto.setDepositPaid(generateRandomDepositPaid());
+        bookingDto.setBookingDatesDto(bookingDatesDto);
+        bookingDto.setAdditionalNeeds("It's always beer");
 
-       return bookingDto;
+        return bookingDto;
     }
 }
