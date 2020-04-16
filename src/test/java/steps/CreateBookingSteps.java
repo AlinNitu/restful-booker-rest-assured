@@ -3,17 +3,19 @@ package steps;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import dto.Booking;
-import dto.BookingDates;
-import dto.BookingResponseBody;
+import dto.BookingDatesDto;
+import dto.BookingDto;
+import dto.BookingResponseBodyDto;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import utils.RestAssuredConfig;
+import utils.HttpConfig;
 import utils.SharedState;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.AssertJUnit.assertNotNull;
+import static org.testng.Assert.*;
+import static utils.DateHandler.getNextMonday;
+import static utils.DateHandler.getNextSunday;
+import static utils.RandomiserHelper.*;
 
 public class CreateBookingSteps {
 
@@ -27,28 +29,16 @@ public class CreateBookingSteps {
     @Given("Create default request payload")
     public void createDefaultRequestPayload() throws JsonProcessingException {
 
-        BookingDates bookingDates = new BookingDates();
-        bookingDates.setCheckinDate("01-01-2022");
-        bookingDates.setCheckoutDate("02-02-2024");
-
-        Booking booking = new Booking();
-        booking.setFirstName("alin");
-        booking.setLastName("nitu");
-        booking.setTotalPrice(100);
-        booking.setDepositPaid(true);
-        booking.setBookingDates(bookingDates);
-        booking.setAdditionalNeeds("beer");
-
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        sharedState.jsonRequestBody = mapper.writeValueAsString(booking);
+        sharedState.jsonRequestBody = mapper.writeValueAsString(createRandomBookingData());
     }
 
     @When("Send POST request")
     public void sendPostRequest() {
 
-        sharedState.response = RestAssuredConfig.sendPostRequest("/booking", sharedState.jsonRequestBody);
+        sharedState.response = HttpConfig.sendPostRequest("/booking", sharedState.jsonRequestBody);
     }
 
     @Then("Status code is {int}")
@@ -65,7 +55,24 @@ public class CreateBookingSteps {
     @Then("The booking id was saved successfully")
     public void bookingIdWasSavedSuccessfully() {
 
-        sharedState.bookingResponseBody = sharedState.response.getBody().as(BookingResponseBody.class);
-        assertNotNull(sharedState.bookingResponseBody.bookingId);
+        sharedState.bookingResponseBodyDto = sharedState.response.getBody().as(BookingResponseBodyDto.class);
+        assertNotNull(sharedState.bookingResponseBodyDto.bookingId);
+    }
+
+    private BookingDto createRandomBookingData() {
+
+       BookingDatesDto bookingDatesDto = BookingDatesDto.builder().build();
+       bookingDatesDto.setCheckin(getNextMonday());
+       bookingDatesDto.setCheckout(getNextSunday());
+
+       BookingDto bookingDto = BookingDto.builder().build();
+       bookingDto.setFirstName(generateRandomFirstName());
+       bookingDto.setLastName(generateRandomLastName());
+       bookingDto.setTotalPrice(generateRandomPrice());
+       bookingDto.setDepositPaid(generateRandomDepositPaid());
+       bookingDto.setBookingDatesDto(bookingDatesDto);
+       bookingDto.setAdditionalNeeds("It's always beer");
+
+       return bookingDto;
     }
 }

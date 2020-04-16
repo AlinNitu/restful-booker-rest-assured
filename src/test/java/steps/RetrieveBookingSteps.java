@@ -2,10 +2,8 @@ package steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
-import utils.RestAssuredConfig;
+import utils.HttpConfig;
 import utils.SharedState;
-
-import java.util.HashMap;
 
 public class RetrieveBookingSteps {
 
@@ -19,15 +17,14 @@ public class RetrieveBookingSteps {
     @When("Send GET request")
     public void sendGETRequest() {
 
-        HashMap<String, String> pathParams = new HashMap<>();
-        pathParams.put("id", String.valueOf(sharedState.bookingResponseBody.bookingId));
-
-        sharedState.response = RestAssuredConfig.sendGetRequest("/booking/{id}", pathParams);
+        sharedState.response = HttpConfig.sendGetRequest("/booking/" + sharedState.bookingResponseBodyDto.bookingId);
     }
 
 
     @And("The retrieved data in payload is the updated one")
     public void theRetrievedDataInPayloadIsTheUpdatedOne() {
+
+
 
     }
 }

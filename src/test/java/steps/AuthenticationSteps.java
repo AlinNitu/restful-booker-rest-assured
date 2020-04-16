@@ -3,10 +3,10 @@ package steps;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import dto.TokenCreation;
-import dto.TokenRetrieval;
+import dto.TokenCreationDto;
+import dto.TokenRetrievalDto;
 import io.cucumber.java.en.Given;
-import utils.RestAssuredConfig;
+import utils.HttpConfig;
 import utils.SharedState;
 
 public class AuthenticationSteps {
@@ -20,20 +20,17 @@ public class AuthenticationSteps {
     @Given("Generate token for authentication")
     public void generateTokenForAuthentication() throws JsonProcessingException {
 
-        TokenCreation tokenCreation = new TokenCreation();
-        tokenCreation.setUsername("admin");
-        tokenCreation.setPassword("password123");
+        TokenCreationDto tokenCreationDto = new TokenCreationDto();
+        tokenCreationDto.setUsername("admin");
+        tokenCreationDto.setPassword("password123");
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-        String tokenRequestBody = mapper.writeValueAsString(tokenCreation);
+        String tokenRequestBody = mapper.writeValueAsString(tokenCreationDto);
 
+        sharedState.response = HttpConfig.sendPostRequest("/auth", tokenRequestBody);
 
-
-        sharedState.response = RestAssuredConfig.sendPostRequest("/auth", tokenRequestBody);
-
-        sharedState.tokenRetrieval = sharedState.response.getBody().as(TokenRetrieval.class);
-        System.out.println(sharedState.tokenRetrieval.token);
+        sharedState.tokenRetrievalDto = sharedState.response.getBody().as(TokenRetrievalDto.class);
     }
 }

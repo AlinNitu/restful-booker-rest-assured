@@ -9,18 +9,17 @@ import io.restassured.specification.RequestSpecification;
 
 import java.util.Map;
 
-public class RestAssuredConfig {
+public class HttpConfig {
 
     public static RequestSpecification request;
 
-    public RestAssuredConfig() {
+    public HttpConfig() {
 
         RequestSpecBuilder builder = new RequestSpecBuilder();
-        builder.setBaseUri("https://restful-booker.herokuapp.com");
+        builder.setBaseUri("https://restful-booker.herokuapp.com"); //could be added from config file for better maintenance
         builder.setContentType(ContentType.JSON);
 
         var requestSpecification = builder.build();
-
         request = RestAssured.given().spec(requestSpecification).log().all();
     }
 
@@ -32,18 +31,32 @@ public class RestAssuredConfig {
                 post(url);
     }
 
-    public static ResponseOptions<Response> sendGetRequest(String url, Map<String, String> pathParam) {
+    public static ResponseOptions<Response> sendPostRequest(String url, String reqBody, Map<String, String> pathParam) {
 
         return request.
                 pathParams(pathParam).
+                body(reqBody).
+                post(url);
+    }
+
+    public static ResponseOptions<Response> sendGetRequest(String url) {
+
+        return request.
                 get(url);
     }
 
-    public static ResponseOptions<Response> sendDeleteRequest(String url, Map<String, String> pathParam, Map<String, String> cookies) {
+    public static ResponseOptions<Response> sendDeleteRequest(String url, Map<String, String> cookies) {
 
         return request.
-                pathParams(pathParam).
                 cookies(cookies).
                 delete(url);
+    }
+
+    public static ResponseOptions<Response> sendPutRequest(String url, String reqBody, Map<String, String> cookies) {
+
+        return request.
+                cookies(cookies).
+                body(reqBody).
+                put(url);
     }
 }
