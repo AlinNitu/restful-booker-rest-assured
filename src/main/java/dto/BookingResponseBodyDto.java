@@ -11,8 +11,7 @@ import lombok.*;
 public class BookingResponseBodyDto {
 
     @Setter(onMethod_ = { @JsonSetter("bookingid") })
-    public int bookingId;
+    public Integer bookingId;
 
-    @Setter(onMethod_ = { @JsonSetter("booking") })
     public BookingDto booking;
 }

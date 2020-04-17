@@ -1,4 +1,4 @@
-package utils;
+package client;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -7,6 +7,7 @@ import io.restassured.http.Cookie;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseOptions;
 import io.restassured.specification.RequestSpecification;
+import utils.HttpRequestType;
 
 public class ClientConfigEXPERIMENTAL {
 

@@ -7,14 +7,14 @@ import dto.BookingDto;
 import dto.BookingDatesDto;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import utils.HttpConfig;
+import client.HttpConfig;
 import utils.SharedState;
 
 import java.util.HashMap;
 
 import static utils.DateHandler.*;
-import static utils.RandomiserHelper.*;
-import static utils.RandomiserHelper.generateRandomDepositPaid;
+import static utils.RandomHelper.*;
+import static utils.RandomHelper.generateRandomDepositPaid;
 
 public class UpdateBookingSteps {
 

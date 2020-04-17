@@ -1,8 +1,8 @@
 package steps;
 
-import io.cucumber.java.en.And;
+import client.HttpConfig;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import utils.HttpConfig;
 import utils.SharedState;
 
 public class RetrieveBookingSteps {
@@ -21,10 +21,8 @@ public class RetrieveBookingSteps {
     }
 
 
-    @And("The retrieved data in payload is the updated one")
+    @Then("The retrieved data in payload is the updated one")
     public void theRetrievedDataInPayloadIsTheUpdatedOne() {
-
-
 
     }
 }

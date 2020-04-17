@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import dto.TokenCreationDto;
 import dto.TokenRetrievalDto;
 import io.cucumber.java.en.Given;
-import utils.HttpConfig;
+import client.HttpConfig;
 import utils.SharedState;
 
 public class AuthenticationSteps {

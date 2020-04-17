@@ -1,7 +1,7 @@
 package steps;
 
 import io.cucumber.java.en.When;
-import utils.HttpConfig;
+import client.HttpConfig;
 import utils.SharedState;
 
 import java.util.HashMap;
