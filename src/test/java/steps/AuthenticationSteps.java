@@ -21,7 +21,7 @@ public class AuthenticationSteps {
     public void generateTokenForAuthentication() throws JsonProcessingException {
 
         TokenCreationDto tokenCreationDto = new TokenCreationDto();
-        tokenCreationDto.setUsername("admin");
+        tokenCreationDto.setUsername("admin"); //could be also stored in a config file
         tokenCreationDto.setPassword("password123");
 
         ObjectMapper mapper = new ObjectMapper();

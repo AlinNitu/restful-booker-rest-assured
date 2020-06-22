@@ -15,8 +15,8 @@ Feature: End to end flow - create a booking, update it, get the updated values a
 
     When  Send GET request
     Then  Status code is 200
-#    And   The retrieved data in payload is the updated one
-#
+    And   The retrieved data in payload is the updated one
+
     When  Send DELETE request
     Then  Status code is 201
 
