@@ -1,6 +1,6 @@
 A project that uses _rest-assured_ library for automation API testing of _https://restful-booker.herokuapp.com/_
 
-1. Install JDK 11+;
+1. Install JDK 11;
 
 2. Import as Maven project (preferably using IntelliJ IDEA);
 
