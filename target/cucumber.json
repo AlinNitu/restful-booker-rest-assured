@@ -3,65 +3,265 @@
     "line": 1,
     "elements": [
       {
-        "start_timestamp": "2020-04-09T19:02:36.003Z",
+        "start_timestamp": "2020-04-18T00:08:54.005Z",
+        "before": [
+          {
+            "result": {
+              "duration": 509162000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "steps.Hooks.setup()"
+            }
+          }
+        ],
         "line": 3,
         "name": "Create a new booking successfully",
         "description": "",
-        "id": ";create-a-new-booking-successfully",
+        "id": "end-to-end-flow---create-a-booking--update-it--get-the-updated-values-and-delete-it;create-a-new-booking-successfully",
         "type": "scenario",
         "keyword": "Scenario",
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 364108000,
+              "status": "passed"
             },
             "line": 4,
             "name": "Create default request payload",
-            "match": {},
+            "match": {
+              "location": "steps.CreateBookingSteps.createDefaultRequestPayload()"
+            },
             "keyword": "Given "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 1418230000,
+              "status": "passed"
             },
             "line": 5,
             "name": "Send POST request",
-            "match": {},
+            "match": {
+              "location": "steps.CreateBookingSteps.sendPostRequest()"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 3362000,
+              "status": "passed"
             },
             "line": 6,
             "name": "Status code is 200",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 15
+                }
+              ],
+              "location": "steps.ValidationSteps.statusCodeIs(int)"
+            },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 107437000,
+              "status": "passed"
             },
             "line": 7,
             "name": "The data in the response body is the same as data in the request body",
-            "match": {},
+            "match": {
+              "location": "steps.ValidationSteps.responseHasSameDataAsRequestBody()"
+            },
             "keyword": "And "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 3079000,
+              "status": "passed"
             },
             "line": 8,
             "name": "The booking id was saved successfully",
-            "match": {},
+            "match": {
+              "location": "steps.ValidationSteps.bookingIdWasSavedSuccessfully()"
+            },
             "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 777674000,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "Generate token for authentication",
+            "match": {
+              "location": "steps.AuthenticationSteps.generateTokenForAuthentication()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 3068000,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "Create update request payload",
+            "match": {
+              "location": "steps.UpdateBookingSteps.createUpdateRequestPayload()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 746102000,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "Send PUT request",
+            "match": {
+              "location": "steps.UpdateBookingSteps.sendPUTRequest()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 89000,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "Status code is 200",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 15
+                }
+              ],
+              "location": "steps.ValidationSteps.statusCodeIs(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 4872000,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "The data in the response body after update is the same as data in the request body",
+            "match": {
+              "location": "steps.ValidationSteps.theDataInTheResponseBodyAfterUpdateIsTheSameAsDataInTheRequestBody()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 626255000,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "Send GET request",
+            "match": {
+              "location": "steps.RetrieveBookingSteps.sendGETRequest()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 127000,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "Status code is 200",
+            "match": {
+              "arguments": [
+                {
+                  "val": "200",
+                  "offset": 15
+                }
+              ],
+              "location": "steps.ValidationSteps.statusCodeIs(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 7539000,
+              "status": "passed"
+            },
+            "line": 18,
+            "name": "The retrieved data in payload is the updated one",
+            "match": {
+              "location": "steps.RetrieveBookingSteps.theRetrievedDataInPayloadIsTheUpdatedOne()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 676818000,
+              "status": "passed"
+            },
+            "line": 20,
+            "name": "Send DELETE request",
+            "match": {
+              "location": "steps.DeleteBookingSteps.sendDELETERequest()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 75000,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "Status code is 201",
+            "match": {
+              "arguments": [
+                {
+                  "val": "201",
+                  "offset": 15
+                }
+              ],
+              "location": "steps.ValidationSteps.statusCodeIs(int)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1512204000,
+              "status": "passed"
+            },
+            "line": 23,
+            "name": "Send GET request",
+            "match": {
+              "location": "steps.RetrieveBookingSteps.sendGETRequest()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 115000,
+              "status": "passed"
+            },
+            "line": 24,
+            "name": "Status code is 404",
+            "match": {
+              "arguments": [
+                {
+                  "val": "404",
+                  "offset": 15
+                }
+              ],
+              "location": "steps.ValidationSteps.statusCodeIs(int)"
+            },
+            "keyword": "Then "
           }
         ]
       }
     ],
-    "name": "",
+    "name": "End to end flow - create a booking, update it, get the updated values and delete it",
     "description": "",
-    "id": "",
+    "id": "end-to-end-flow---create-a-booking--update-it--get-the-updated-values-and-delete-it",
     "keyword": "Feature",
     "uri": "file:src/test/features/create_booking.feature",
     "tags": []

@@ -1,7 +1,7 @@
 package steps;
 
 import io.cucumber.java.Before;
-import utils.HttpConfig;
+import client.HttpConfig;
 
 public class Hooks {
 

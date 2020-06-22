@@ -10,5 +10,6 @@ public class SharedState {
     public ResponseOptions<Response> response;
     public String jsonRequestBody;
     public BookingResponseBodyDto bookingResponseBodyDto;
+    public String updatedResponseBody;
     public TokenRetrievalDto tokenRetrievalDto;
 }

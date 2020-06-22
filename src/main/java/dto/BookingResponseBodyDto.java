@@ -1,18 +1,16 @@
 package dto;
 
-import com.fasterxml.jackson.annotation.JsonSetter;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 @Data
-@Builder(toBuilder = true)
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-
+//@Builder//(toBuilder = true)
+//@AllArgsConstructor
+//@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class BookingResponseBodyDto {
 
-    @Setter(onMethod_ = { @JsonSetter("bookingid") })
-    public int bookingId;
+    @JsonProperty("bookingid")
+    public Integer bookingId;
 
-    @Setter(onMethod_ = { @JsonSetter("booking") })
     public BookingDto booking;
 }

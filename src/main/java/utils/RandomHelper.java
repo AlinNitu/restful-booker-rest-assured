@@ -2,7 +2,7 @@ package utils;
 
 import com.github.javafaker.Faker;
 
-public class RandomiserHelper {
+public class RandomHelper {
 
     public static Faker faker = new Faker();
 
@@ -16,9 +16,9 @@ public class RandomiserHelper {
         return faker.name().lastName();
     }
 
-    public static double generateRandomPrice() {
+    public static int generateRandomPrice() {
 
-        return faker.number().randomDouble(2, 1, 999);
+        return faker.number().numberBetween(1, 999);
     }
 
     public static boolean generateRandomDepositPaid() {

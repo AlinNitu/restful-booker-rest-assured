@@ -16,7 +16,7 @@ public class BookingDto {
     public String lastName;
 
     @Setter(onMethod_ = { @JsonSetter("totalprice") })
-    public double totalPrice;
+    public int totalPrice;
 
     @Setter(onMethod_ = { @JsonSetter("depositpaid") })
     public boolean depositPaid;

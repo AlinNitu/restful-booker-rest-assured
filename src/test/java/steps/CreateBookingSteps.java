@@ -1,25 +1,24 @@
 package steps;
 
+import client.HttpConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.google.common.flogger.FluentLogger;
 import dto.BookingDatesDto;
 import dto.BookingDto;
-import dto.BookingResponseBodyDto;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import utils.HttpConfig;
 import utils.SharedState;
 
-import static org.testng.Assert.*;
 import static utils.DateHandler.getNextMonday;
 import static utils.DateHandler.getNextSunday;
-import static utils.RandomiserHelper.*;
+import static utils.RandomHelper.*;
 
 public class CreateBookingSteps {
 
     private SharedState sharedState;
+    private static final FluentLogger logger = FluentLogger.forEnclosingClass();
 
     public CreateBookingSteps(SharedState state) {
         this.sharedState = state;
@@ -33,6 +32,7 @@ public class CreateBookingSteps {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
         sharedState.jsonRequestBody = mapper.writeValueAsString(createRandomBookingData());
+        logger.atInfo().log("Creating request payload with JSON body: %s", sharedState.jsonRequestBody);
     }
 
     @When("Send POST request")
@@ -41,23 +41,6 @@ public class CreateBookingSteps {
         sharedState.response = HttpConfig.sendPostRequest("/booking", sharedState.jsonRequestBody);
     }
 
-    @Then("Status code is {int}")
-    public void statusCodeIs(int expectedStatusCode) {
-
-        assertEquals(sharedState.response.statusCode(), expectedStatusCode);
-    }
-
-    @Then("The data in the response body is the same as data in the request body")
-    public void responseHasSameDataAsRequestBody() {
-
-    }
-
-    @Then("The booking id was saved successfully")
-    public void bookingIdWasSavedSuccessfully() {
-
-        sharedState.bookingResponseBodyDto = sharedState.response.getBody().as(BookingResponseBodyDto.class);
-        assertNotNull(sharedState.bookingResponseBodyDto.bookingId);
-    }
 
     private BookingDto createRandomBookingData() {
 
