@@ -1,6 +1,6 @@
 Feature: End to end flow - create a booking, update it, get the updated values and delete it
 
-  Scenario: Create a new booking successfully
+  Scenario: Create a new booking successfully, update it, get the updated values and delete it
     Given Create default request payload
     When  Send POST request
     Then  Status code is 200
@@ -8,7 +8,7 @@ Feature: End to end flow - create a booking, update it, get the updated values a
     And   The booking id was saved successfully
 
     Given Generate token for authentication
-    Given Create update request payload
+    And   Create update request payload
     When  Send PUT request
     Then  Status code is 200
     And   The data in the response body after update is the same as data in the request body
