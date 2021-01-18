@@ -10,4 +10,4 @@ a. Individually, by running a specific feature file in src/test/features;
 
 b. Executing the runner class that can be found in src/test/java;
 
-*not working via command line for now for some reason, need to investigate
+c. via command line
